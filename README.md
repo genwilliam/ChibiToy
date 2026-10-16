@@ -13,6 +13,11 @@
 
 ---
 
+## example
+
+<img src="docs/example-images/img1.png" alt="Example" width="300">
+<img src="docs/example-images/img2.png" alt="Example" width="300">
+
 ## 目录结构
 
 ```
