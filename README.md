@@ -256,22 +256,6 @@ cp config/chibitoy.example.yaml config/chibitoy.yaml
 
 ---
 
-## 文档索引
-
-| 文档                                | 内容                                                   |
-| ----------------------------------- | ------------------------------------------------------ |
-| `docs/acceptance_criteria.md`       | **《风格验证验收标准》**：校验维度、判定规则、合格指标 |
-| `docs/delivery.md`                  | 交付清单与逐项验收状态                                 |
-| `docs/environment.md`               | 环境、模型 SHA256、节点依赖与安装                      |
-| `docs/issues.md`                    | 已知问题清单（含外部阻塞与缓解状态）                   |
-| `docs/api_backend.md`               | API 后端用法、实测数据、费用与隐私说明                 |
-| `docs/api_provider_comparison.md`   | 国内生图 API 调研对比                                  |
-| `docs/photo_intake_workflow.md`     | 补充新照片后的验证流程                                 |
-| `docs/face_model_license_survey.md` | 人脸嵌入模型许可调研                                   |
-| `docs/HANDOVER.md`                  | 交接说明与下一步                                       |
-
----
-
 ## 模型清单与校验
 
 模型清单和哈希由 `scripts/verify_delivery.py` 检查。文档记录与磁盘文件不一致时，检查会失败。
