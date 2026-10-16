@@ -15,8 +15,10 @@
 
 ## example
 
-<img src="docs/example-images/img1.png" alt="Example" width="300">
-<img src="docs/example-images/img2.png" alt="Example" width="300">
+<p align="center">
+  <img src="docs/example-images/img1.png" width="300">
+  <img src="docs/example-images/img2.png" width="300">
+</p>
 
 ## 目录结构
 
