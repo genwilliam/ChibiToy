@@ -1,0 +1,15 @@
+# ChibiToy 模型路径配置
+chibitoy:
+  base_path: ../models/
+  checkpoints: checkpoints
+  vae: vae
+  loras: loras
+  controlnet: controlnet
+  clip_vision: clip_vision
+  text_encoders: text_encoders
+  diffusion_models: diffusion_models
+  upscale_models: upscale_models
+  embeddings: embeddings
+  detection: detection
+  background_removal: background_removal
+  ipadapter: ipadapter

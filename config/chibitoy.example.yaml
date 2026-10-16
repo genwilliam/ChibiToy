@@ -1,0 +1,52 @@
+# ChibiToy API 后端配置模板
+#
+# 用法：把它复制成 config/chibitoy.yaml 再填入真实 api_key。
+#   cp config/chibitoy.example.yaml config/chibitoy.yaml
+
+backend:
+  # 生图后端：api = 云端 API；comfyui = 本地 ComfyUI
+  mode: "api"
+  # 使用哪个云端服务商
+  provider: "aliyun"
+
+providers:
+  aliyun:
+    # 阿里云百炼（Model Studio）API Key。
+    # 申请入口见 docs/api_backend.md
+    api_key: ""
+
+    # 具体路径集中在 src/chibitoy/apibackend.py 里，便于校准
+    base_url: "https://dashscope.aliyuncs.com"
+
+    # 模型：实测可用（2026-10 真实调用确认）。
+    #   qwen-image-2.0      -> 8s 级，配合 parameters.size 出原生 1088x1088（最快）
+    #   qwen-image-2.1-pro  -> 2048x2048，约 30~43s（更高分辨率）
+    #   qwen-image-3.0-pro  -> 2048x2048，约 60~96s（更高质量，但超过 30s 目标）
+    model: "qwen-image-2.0"
+
+    # 单次 HTTP 请求超时（秒）
+    timeout_seconds: 120
+    # 异步任务轮询间隔与总超时（秒）
+    poll_interval_seconds: 5
+    poll_timeout_seconds: 300
+
+    # 失败后的最多尝试次数（含首次）。默认 1 = 不自动重试
+    # 每一次重试都是一次真实付费调用，故"失败后多试几次"不是默认行为
+    # 仅在你接受"一次失败可能变成 N 次计费"时才调大
+    max_retries: 1
+
+generation:
+  width: 1088
+  height: 1088
+  output_format: "png"
+
+  # 风格与约束模板
+  style_prompt: >-
+    chibi collectible designer toy figurine, 1.5-2 head-to-body proportion,
+    oversized head, small rounded body, matte PVC vinyl material, soft clay texture,
+    C4D octane render, soft studio lighting, front view, centered, full body,
+    pure white background, no text, no watermark, no logo
+  negative_prompt: >-
+    photorealistic, real human, adult proportions, tall slender body, cropped,
+    half body, out of frame, cut off head, cut off feet, extra limbs, bad anatomy,
+    glossy plastic, harsh shadows, complex background, watermark, text, logo
