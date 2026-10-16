@@ -1,0 +1,1051 @@
+{
+  "last_node_id": 22,
+  "last_link_id": 25,
+  "nodes": [
+    {
+      "id": 11,
+      "type": "LoadImage",
+      "pos": [
+        60.0,
+        80.0
+      ],
+      "size": [
+        330.0,
+        120.0
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            6
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "slot_index": 1,
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "demo_ipa_crop.png"
+      ]
+    },
+    {
+      "id": 12,
+      "type": "CLIPVisionLoader",
+      "pos": [
+        60.0,
+        340.0
+      ],
+      "size": [
+        330.0,
+        120.0
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CLIP_VISION",
+          "type": "CLIP_VISION",
+          "slot_index": 0,
+          "links": [
+            7
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPVisionLoader"
+      },
+      "widgets_values": [
+        "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors"
+      ]
+    },
+    {
+      "id": 13,
+      "type": "IPAdapterModelLoader",
+      "pos": [
+        60.0,
+        600.0
+      ],
+      "size": [
+        330.0,
+        120.0
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IPADAPTER",
+          "type": "IPADAPTER",
+          "slot_index": 0,
+          "links": [
+            5
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "IPAdapterModelLoader"
+      },
+      "widgets_values": [
+        "ip-adapter-plus-face_sdxl_vit-h.safetensors"
+      ]
+    },
+    {
+      "id": 15,
+      "type": "LoadBackgroundRemovalModel",
+      "pos": [
+        60.0,
+        860.0
+      ],
+      "size": [
+        330.0,
+        120.0
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "bg_model",
+          "type": "BACKGROUND_REMOVAL",
+          "slot_index": 0,
+          "links": [
+            20
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadBackgroundRemovalModel"
+      },
+      "widgets_values": [
+        "birefnet.safetensors"
+      ]
+    },
+    {
+      "id": 19,
+      "type": "LoadImage",
+      "pos": [
+        60.0,
+        1120.0
+      ],
+      "size": [
+        330.0,
+        120.0
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            1
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "slot_index": 1,
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "chibi_silhouette.png"
+      ]
+    },
+    {
+      "id": 20,
+      "type": "Canny",
+      "pos": [
+        440.0,
+        80.0
+      ],
+      "size": [
+        330.0,
+        120.0
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            13
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Canny"
+      },
+      "widgets_values": [
+        0.4,
+        0.8
+      ]
+    },
+    {
+      "id": 21,
+      "type": "ControlNetLoader",
+      "pos": [
+        60.0,
+        1380.0
+      ],
+      "size": [
+        330.0,
+        120.0
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CONTROL_NET",
+          "type": "CONTROL_NET",
+          "slot_index": 0,
+          "links": [
+            12
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ControlNetLoader"
+      },
+      "widgets_values": [
+        "canny_sdxl.safetensors"
+      ]
+    },
+    {
+      "id": 4,
+      "type": "CheckpointLoaderSimple",
+      "pos": [
+        60.0,
+        1640.0
+      ],
+      "size": [
+        330.0,
+        120.0
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "slot_index": 0,
+          "links": [
+            2
+          ]
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "slot_index": 1,
+          "links": [
+            3
+          ]
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "slot_index": 2,
+          "links": [
+            19
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CheckpointLoaderSimple"
+      },
+      "widgets_values": [
+        "sd_xl_base_1.0.safetensors"
+      ]
+    },
+    {
+      "id": 10,
+      "type": "LoraLoader",
+      "pos": [
+        440.0,
+        340.0
+      ],
+      "size": [
+        330.0,
+        150.0
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 2
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 3
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "slot_index": 0,
+          "links": [
+            4
+          ]
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "slot_index": 1,
+          "links": [
+            8,
+            9
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoraLoader"
+      },
+      "widgets_values": [
+        "Designer_BlindBox-000015.safetensors",
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": 14,
+      "type": "IPAdapterAdvanced",
+      "pos": [
+        820.0,
+        80.0
+      ],
+      "size": [
+        330.0,
+        240.0
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 4
+        },
+        {
+          "name": "ipadapter",
+          "type": "IPADAPTER",
+          "link": 5
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 6
+        },
+        {
+          "name": "clip_vision",
+          "type": "CLIP_VISION",
+          "link": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "slot_index": 0,
+          "links": [
+            14
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "IPAdapterAdvanced"
+      },
+      "widgets_values": [
+        0.6,
+        "linear",
+        "concat",
+        0.0,
+        1.0,
+        "V only"
+      ]
+    },
+    {
+      "id": 5,
+      "type": "EmptyLatentImage",
+      "pos": [
+        60.0,
+        1900.0
+      ],
+      "size": [
+        330.0,
+        150.0
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            17
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "EmptyLatentImage"
+      },
+      "widgets_values": [
+        1088,
+        1088,
+        1
+      ]
+    },
+    {
+      "id": 6,
+      "type": "CLIPTextEncode",
+      "pos": [
+        820.0,
+        340.0
+      ],
+      "size": [
+        330.0,
+        120.0
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 8
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "slot_index": 0,
+          "links": [
+            10
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "chibi toy figure, collectible designer toy, 1.75 head-to-body proportion, oversized head, small rounded body, chubby rounded limbs, cute stylized proportions, matte PVC vinyl material, soft clay texture, flocked vinyl toy surface, subtle fine surface texture, non-glossy finish, C4D octane render, soft studio lighting, gentle top-side light, soft ambient occlusion, smooth gradient shading, front view, centered composition, full body visible, whole figure in frame, standing straight, arms relaxed at sides, both feet flat on the ground, static neutral standing pose, symmetrical pose, plain neutral studio backdrop, soft contact shadow, short black hair, black t-shirt, product photography, sharp focus, high detail"
+      ]
+    },
+    {
+      "id": 7,
+      "type": "CLIPTextEncode",
+      "pos": [
+        820.0,
+        600.0
+      ],
+      "size": [
+        330.0,
+        120.0
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 9
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "slot_index": 0,
+          "links": [
+            11
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "photorealistic, realistic photo, real human, adult proportions, normal head-to-body ratio, tall slender body, long legs, long arms, elongated limbs, tiny head, deformed face, distorted face, asymmetric eyes, cross-eyed, extra eyes, mutated hands, extra fingers, missing fingers, fused fingers, extra limbs, missing limbs, extra arms, extra legs, bad anatomy, extra hands, multiple hands, three hands, duplicated hands, duplicated limbs, malformed hands, mutated hands, misplaced hands, glossy plastic, shiny surface, strong specular highlights, harsh reflections, complex background, cluttered background, busy background, gradient background, vignette, dark background, textured background, patterned background, backdrop props, studio props, hard shadows, harsh lighting, dramatic lighting, cropped, out of frame, cut off head, cut off feet, close-up, blurry, out of focus, noise, grainy, jpeg artifacts, low quality, lowres, watermark, text, signature, logo, brand logo, artist name, text on shirt, printed text on clothes, lettering, words, caption, label, gibberish text, garbled writing, badge, patch, emblem, sticker, tag, sew-on label, walking, running, jumping, raised leg, dynamic pose, tilted body, skin pores, skin blemish, realistic skin texture, photograph of a person"
+      ]
+    },
+    {
+      "id": 22,
+      "type": "ControlNetApplyAdvanced",
+      "pos": [
+        1200.0,
+        80.0
+      ],
+      "size": [
+        330.0,
+        150.0
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 10
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 11
+        },
+        {
+          "name": "control_net",
+          "type": "CONTROL_NET",
+          "link": 12
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 13
+        }
+      ],
+      "outputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "slot_index": 0,
+          "links": [
+            15
+          ]
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "slot_index": 1,
+          "links": [
+            16
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ControlNetApplyAdvanced"
+      },
+      "widgets_values": [
+        0.7,
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "id": 3,
+      "type": "KSampler",
+      "pos": [
+        1580.0,
+        80.0
+      ],
+      "size": [
+        330.0,
+        270.0
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 14
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 15
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 16
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 17
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            18
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        42,
+        "fixed",
+        30,
+        7.5,
+        "dpmpp_2m",
+        "karras",
+        1.0
+      ]
+    },
+    {
+      "id": 8,
+      "type": "VAEDecode",
+      "pos": [
+        1960.0,
+        80.0
+      ],
+      "size": [
+        330.0,
+        120.0
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 18
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 19
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            21,
+            23
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 16,
+      "type": "RemoveBackground",
+      "pos": [
+        2340.0,
+        80.0
+      ],
+      "size": [
+        330.0,
+        120.0
+      ],
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "bg_removal_model",
+          "type": "BACKGROUND_REMOVAL",
+          "link": 20
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 21
+        }
+      ],
+      "outputs": [
+        {
+          "name": "mask",
+          "type": "MASK",
+          "slot_index": 0,
+          "links": [
+            22
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RemoveBackground"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 18,
+      "type": "InvertMask",
+      "pos": [
+        2720.0,
+        80.0
+      ],
+      "size": [
+        330.0,
+        120.0
+      ],
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 22
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "slot_index": 0,
+          "links": [
+            24
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "InvertMask"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 17,
+      "type": "JoinImageWithAlpha",
+      "pos": [
+        3100.0,
+        80.0
+      ],
+      "size": [
+        330.0,
+        120.0
+      ],
+      "flags": {},
+      "order": 18,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 23
+        },
+        {
+          "name": "alpha",
+          "type": "MASK",
+          "link": 24
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            25
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "JoinImageWithAlpha"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 9,
+      "type": "SaveImage",
+      "pos": [
+        3480.0,
+        80.0
+      ],
+      "size": [
+        330.0,
+        120.0
+      ],
+      "flags": {},
+      "order": 19,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 25
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "chibitoy_final"
+      ]
+    }
+  ],
+  "links": [
+    [
+      1,
+      19,
+      0,
+      20,
+      0,
+      "IMAGE"
+    ],
+    [
+      2,
+      4,
+      0,
+      10,
+      0,
+      "MODEL"
+    ],
+    [
+      3,
+      4,
+      1,
+      10,
+      1,
+      "CLIP"
+    ],
+    [
+      4,
+      10,
+      0,
+      14,
+      0,
+      "MODEL"
+    ],
+    [
+      5,
+      13,
+      0,
+      14,
+      1,
+      "IPADAPTER"
+    ],
+    [
+      6,
+      11,
+      0,
+      14,
+      2,
+      "IMAGE"
+    ],
+    [
+      7,
+      12,
+      0,
+      14,
+      3,
+      "CLIP_VISION"
+    ],
+    [
+      8,
+      10,
+      1,
+      6,
+      0,
+      "CLIP"
+    ],
+    [
+      9,
+      10,
+      1,
+      7,
+      0,
+      "CLIP"
+    ],
+    [
+      10,
+      6,
+      0,
+      22,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      11,
+      7,
+      0,
+      22,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      12,
+      21,
+      0,
+      22,
+      2,
+      "CONTROL_NET"
+    ],
+    [
+      13,
+      20,
+      0,
+      22,
+      3,
+      "IMAGE"
+    ],
+    [
+      14,
+      14,
+      0,
+      3,
+      0,
+      "MODEL"
+    ],
+    [
+      15,
+      22,
+      0,
+      3,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      16,
+      22,
+      1,
+      3,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      17,
+      5,
+      0,
+      3,
+      3,
+      "LATENT"
+    ],
+    [
+      18,
+      3,
+      0,
+      8,
+      0,
+      "LATENT"
+    ],
+    [
+      19,
+      4,
+      2,
+      8,
+      1,
+      "VAE"
+    ],
+    [
+      20,
+      15,
+      0,
+      16,
+      0,
+      "BACKGROUND_REMOVAL"
+    ],
+    [
+      21,
+      8,
+      0,
+      16,
+      1,
+      "IMAGE"
+    ],
+    [
+      22,
+      16,
+      0,
+      18,
+      0,
+      "MASK"
+    ],
+    [
+      23,
+      8,
+      0,
+      17,
+      0,
+      "IMAGE"
+    ],
+    [
+      24,
+      18,
+      0,
+      17,
+      1,
+      "MASK"
+    ],
+    [
+      25,
+      17,
+      0,
+      9,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.9,
+      "offset": [
+        100,
+        60
+      ]
+    }
+  },
+  "version": 0.4
+}

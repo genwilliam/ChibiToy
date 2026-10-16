@@ -1,0 +1,23 @@
+{
+  "name": "crop",
+  "source": "inputs/img/test.jpg",
+  "seeds": [42],
+  "common": [
+    "--mode", "txt2img", "--width", "1088", "--height", "1088",
+    "--input-image", "inputs/img/test.jpg",
+    "--ipadapter", "ip-adapter-plus-face_sdxl_vit-h.safetensors",
+    "--ipadapter-weight", "0.6", "--ipadapter-prep-bg",
+    "--lora", "Designer_BlindBox-000015.safetensors",
+    "--controlnet", "canny_sdxl.safetensors",
+    "--controlnet-image", "inputs/chibi_silhouette.png",
+    "--controlnet-strength", "0.7",
+    "--bg-removal", "birefnet.safetensors",
+    "--steps", "8",
+    "--appearance", "short black hair, black t-shirt"
+  ],
+  "variants": {
+    "top-square":  ["--ipadapter-crop", "top-square"],
+    "head-square": ["--ipadapter-crop", "head-square"],
+    "none":        ["--ipadapter-crop", "none"]
+  }
+}

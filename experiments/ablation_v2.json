@@ -1,0 +1,52 @@
+{
+  "name": "ablation_v2",
+  "source": "inputs/img/test.jpg",
+  "seeds": [
+    42
+  ],
+  "common": [
+    "--mode",
+    "txt2img",
+    "--width",
+    "1088",
+    "--height",
+    "1088",
+    "--input-image",
+    "inputs/img/test.jpg",
+    "--ipadapter",
+    "ip-adapter-plus-face_sdxl_vit-h.safetensors",
+    "--ipadapter-weight",
+    "0.6",
+    "--ipadapter-crop",
+    "top-square",
+    "--ipadapter-prep-bg",
+    "--lora",
+    "Designer_BlindBox-000015.safetensors",
+    "--controlnet",
+    "canny_sdxl.safetensors",
+    "--controlnet-image",
+    "inputs/chibi_silhouette.png",
+    "--controlnet-strength",
+    "0.7",
+    "--bg-removal",
+    "birefnet.safetensors",
+    "--steps",
+    "15",
+    "--appearance",
+    "short black hair, dark brown jacket"
+  ],
+  "variants": {
+    "A0_base": [
+      "--negative",
+      "photorealistic, realistic photo, real human, adult proportions, normal head-to-body ratio, tall slender body, long legs, long arms, elongated limbs, tiny head, deformed face, distorted face, asymmetric eyes, cross-eyed, extra eyes, mutated hands, extra fingers, missing fingers, fused fingers, extra limbs, missing limbs, extra arms, extra legs, bad anatomy, extra hands, multiple hands, three hands, duplicated hands, duplicated limbs, malformed hands, mutated hands, misplaced hands, glossy plastic, shiny surface, strong specular highlights, harsh reflections, complex background, cluttered background, busy background, gradient background, vignette, dark background, textured background, patterned background, backdrop props, studio props, hard shadows, harsh lighting, dramatic lighting, cropped, out of frame, cut off head, cut off feet, close-up, blurry, out of focus, noise, grainy, jpeg artifacts, low quality, lowres, watermark, text, signature, logo, brand logo, artist name, text on shirt, printed text on clothes, lettering, words, caption, label, gibberish text, garbled writing, badge, patch, emblem, sticker, tag, sew-on label, walking, running, jumping, raised leg, dynamic pose, tilted body, skin pores, skin blemish, realistic skin texture, photograph of a person"
+    ],
+    "A1_accessory": [
+      "--negative",
+      "photorealistic, realistic photo, real human, adult proportions, normal head-to-body ratio, tall slender body, long legs, long arms, elongated limbs, tiny head, deformed face, distorted face, asymmetric eyes, cross-eyed, extra eyes, mutated hands, extra fingers, missing fingers, fused fingers, extra limbs, missing limbs, extra arms, extra legs, bad anatomy, extra hands, multiple hands, three hands, duplicated hands, duplicated limbs, malformed hands, mutated hands, misplaced hands, glossy plastic, shiny surface, strong specular highlights, harsh reflections, complex background, cluttered background, busy background, gradient background, vignette, dark background, textured background, patterned background, backdrop props, studio props, hard shadows, harsh lighting, dramatic lighting, cropped, out of frame, cut off head, cut off feet, close-up, blurry, out of focus, noise, grainy, jpeg artifacts, low quality, lowres, watermark, text, signature, logo, brand logo, artist name, text on shirt, printed text on clothes, lettering, words, caption, label, gibberish text, garbled writing, badge, patch, emblem, sticker, tag, sew-on label, walking, running, jumping, raised leg, dynamic pose, tilted body, skin pores, skin blemish, realistic skin texture, photograph of a person, headphones, ear muffs, earmuffs, mouse ears, animal ears, horns, space helmet, helmet"
+    ],
+    "A2_structure": [
+      "--negative",
+      "photorealistic, realistic photo, real human, adult proportions, normal head-to-body ratio, tall slender body, long legs, long arms, elongated limbs, tiny head, deformed face, distorted face, asymmetric eyes, cross-eyed, extra eyes, mutated hands, extra fingers, missing fingers, fused fingers, extra limbs, missing limbs, extra arms, extra legs, bad anatomy, extra hands, multiple hands, three hands, duplicated hands, duplicated limbs, malformed hands, mutated hands, misplaced hands, glossy plastic, shiny surface, strong specular highlights, harsh reflections, complex background, cluttered background, busy background, gradient background, vignette, dark background, textured background, patterned background, backdrop props, studio props, hard shadows, harsh lighting, dramatic lighting, cropped, out of frame, cut off head, cut off feet, close-up, blurry, out of focus, noise, grainy, jpeg artifacts, low quality, lowres, watermark, text, signature, logo, brand logo, artist name, text on shirt, printed text on clothes, lettering, words, caption, label, gibberish text, garbled writing, badge, patch, emblem, sticker, tag, sew-on label, walking, running, jumping, raised leg, dynamic pose, tilted body, skin pores, skin blemish, realistic skin texture, photograph of a person, wings, puffy sleeves, puffed sleeves, shoulder pads"
+    ]
+  }
+}

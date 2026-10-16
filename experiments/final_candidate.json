@@ -1,0 +1,22 @@
+{
+  "name": "final_candidate",
+  "source": "inputs/img/test.jpg",
+  "seeds": [1, 42, 123, 777, 2024],
+  "common": [
+    "--mode", "txt2img", "--width", "1088", "--height", "1088",
+    "--input-image", "inputs/img/test.jpg",
+    "--ipadapter", "ip-adapter-plus-face_sdxl_vit-h.safetensors",
+    "--ipadapter-weight", "0.6", "--ipadapter-crop", "top-square", "--ipadapter-prep-bg",
+    "--lora", "Designer_BlindBox-000015.safetensors",
+    "--lora-strength-model", "1.0", "--lora-strength-clip", "1.0",
+    "--controlnet", "canny_sdxl.safetensors",
+    "--controlnet-image", "inputs/chibi_silhouette.png",
+    "--controlnet-strength", "0.7",
+    "--bg-removal", "birefnet.safetensors",
+    "--steps", "30",
+    "--appearance", "short black hair, dark brown jacket"
+  ],
+  "variants": {
+    "cand": []
+  }
+}

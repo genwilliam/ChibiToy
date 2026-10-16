@@ -1,0 +1,39 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+.venv/
+.uv-cache/
+
+# 模型权重
+models/**/*.safetensors
+models/**/*.ckpt
+models/**/*.pt
+models/**/*.sft
+models/**/*.bin
+models/**/*.pth
+models/**/*.onnx
+
+# ---- 生成结果与日志 ----
+outputs/*
+!outputs/.gitkeep
+results/*
+!results/.gitkeep
+logs/*
+!logs/.gitkeep
+
+inputs/*
+!inputs/.gitkeep
+
+tmp/
+
+# 含真实 API Key 的本地配置，绝不入库
+config/chibitoy.yaml
+
+ComfyUI/
+
+.DS_Store
+
+PROJECT_CHECKLIST.md

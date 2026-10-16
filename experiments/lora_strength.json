@@ -1,0 +1,24 @@
+{
+  "name": "lora_strength",
+  "source": "inputs/img/test.jpg",
+  "seeds": [42],
+  "common": [
+    "--mode", "txt2img", "--width", "1088", "--height", "1088",
+    "--input-image", "inputs/img/test.jpg",
+    "--ipadapter", "ip-adapter-plus-face_sdxl_vit-h.safetensors",
+    "--ipadapter-weight", "0.6", "--ipadapter-crop", "top-square", "--ipadapter-prep-bg",
+    "--lora", "Designer_BlindBox-000015.safetensors",
+    "--controlnet", "canny_sdxl.safetensors",
+    "--controlnet-image", "inputs/chibi_silhouette.png",
+    "--controlnet-strength", "0.7",
+    "--bg-removal", "birefnet.safetensors",
+    "--steps", "8",
+    "--appearance", "short black hair, black t-shirt"
+  ],
+  "variants": {
+    "lora000": ["--lora-strength-model", "0.0", "--lora-strength-clip", "0.0"],
+    "lora040": ["--lora-strength-model", "0.4", "--lora-strength-clip", "0.4"],
+    "lora070": ["--lora-strength-model", "0.7", "--lora-strength-clip", "0.7"],
+    "lora100": ["--lora-strength-model", "1.0", "--lora-strength-clip", "1.0"]
+  }
+}

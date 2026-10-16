@@ -1,0 +1,235 @@
+{
+  "4": {
+    "class_type": "CheckpointLoaderSimple",
+    "inputs": {
+      "ckpt_name": "sd_xl_base_1.0.safetensors"
+    }
+  },
+  "5": {
+    "class_type": "EmptyLatentImage",
+    "inputs": {
+      "width": 1088,
+      "height": 1088,
+      "batch_size": 1
+    }
+  },
+  "10": {
+    "class_type": "LoraLoader",
+    "inputs": {
+      "model": [
+        "4",
+        0
+      ],
+      "clip": [
+        "4",
+        1
+      ],
+      "lora_name": "Designer_BlindBox-000015.safetensors",
+      "strength_model": 1.0,
+      "strength_clip": 1.0
+    }
+  },
+  "6": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "chibi toy figure, collectible designer toy, 1.75 head-to-body proportion, oversized head, small rounded body, chubby rounded limbs, cute stylized proportions, matte PVC vinyl material, soft clay texture, flocked vinyl toy surface, subtle fine surface texture, non-glossy finish, C4D octane render, soft studio lighting, gentle top-side light, soft ambient occlusion, smooth gradient shading, front view, centered composition, full body visible, whole figure in frame, standing straight, arms relaxed at sides, both feet flat on the ground, static neutral standing pose, symmetrical pose, plain neutral studio backdrop, soft contact shadow, short black hair, black t-shirt, product photography, sharp focus, high detail",
+      "clip": [
+        "10",
+        1
+      ]
+    }
+  },
+  "7": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "photorealistic, realistic photo, real human, adult proportions, normal head-to-body ratio, tall slender body, long legs, long arms, elongated limbs, tiny head, deformed face, distorted face, asymmetric eyes, cross-eyed, extra eyes, mutated hands, extra fingers, missing fingers, fused fingers, extra limbs, missing limbs, extra arms, extra legs, bad anatomy, extra hands, multiple hands, three hands, duplicated hands, duplicated limbs, malformed hands, mutated hands, misplaced hands, glossy plastic, shiny surface, strong specular highlights, harsh reflections, complex background, cluttered background, busy background, gradient background, vignette, dark background, textured background, patterned background, backdrop props, studio props, hard shadows, harsh lighting, dramatic lighting, cropped, out of frame, cut off head, cut off feet, close-up, blurry, out of focus, noise, grainy, jpeg artifacts, low quality, lowres, watermark, text, signature, logo, brand logo, artist name, text on shirt, printed text on clothes, lettering, words, caption, label, gibberish text, garbled writing, badge, patch, emblem, sticker, tag, sew-on label, walking, running, jumping, raised leg, dynamic pose, tilted body, skin pores, skin blemish, realistic skin texture, photograph of a person",
+      "clip": [
+        "10",
+        1
+      ]
+    }
+  },
+  "19": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "chibi_silhouette.png"
+    }
+  },
+  "20": {
+    "class_type": "Canny",
+    "inputs": {
+      "image": [
+        "19",
+        0
+      ],
+      "low_threshold": 0.4,
+      "high_threshold": 0.8
+    }
+  },
+  "21": {
+    "class_type": "ControlNetLoader",
+    "inputs": {
+      "control_net_name": "canny_sdxl.safetensors"
+    }
+  },
+  "22": {
+    "class_type": "ControlNetApplyAdvanced",
+    "inputs": {
+      "positive": [
+        "6",
+        0
+      ],
+      "negative": [
+        "7",
+        0
+      ],
+      "control_net": [
+        "21",
+        0
+      ],
+      "image": [
+        "20",
+        0
+      ],
+      "strength": 0.7,
+      "start_percent": 0.0,
+      "end_percent": 1.0
+    }
+  },
+  "11": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "demo_ipa_crop.png"
+    }
+  },
+  "12": {
+    "class_type": "CLIPVisionLoader",
+    "inputs": {
+      "clip_name": "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors"
+    }
+  },
+  "13": {
+    "class_type": "IPAdapterModelLoader",
+    "inputs": {
+      "ipadapter_file": "ip-adapter-plus-face_sdxl_vit-h.safetensors"
+    }
+  },
+  "14": {
+    "class_type": "IPAdapterAdvanced",
+    "inputs": {
+      "model": [
+        "10",
+        0
+      ],
+      "ipadapter": [
+        "13",
+        0
+      ],
+      "image": [
+        "11",
+        0
+      ],
+      "clip_vision": [
+        "12",
+        0
+      ],
+      "weight": 0.6,
+      "weight_type": "linear",
+      "combine_embeds": "concat",
+      "start_at": 0.0,
+      "end_at": 1.0,
+      "embeds_scaling": "V only"
+    }
+  },
+  "3": {
+    "class_type": "KSampler",
+    "inputs": {
+      "seed": 42,
+      "steps": 30,
+      "cfg": 7.5,
+      "sampler_name": "dpmpp_2m",
+      "scheduler": "karras",
+      "denoise": 1.0,
+      "model": [
+        "14",
+        0
+      ],
+      "positive": [
+        "22",
+        0
+      ],
+      "negative": [
+        "22",
+        1
+      ],
+      "latent_image": [
+        "5",
+        0
+      ]
+    }
+  },
+  "8": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "3",
+        0
+      ],
+      "vae": [
+        "4",
+        2
+      ]
+    }
+  },
+  "15": {
+    "class_type": "LoadBackgroundRemovalModel",
+    "inputs": {
+      "bg_removal_name": "birefnet.safetensors"
+    }
+  },
+  "16": {
+    "class_type": "RemoveBackground",
+    "inputs": {
+      "bg_removal_model": [
+        "15",
+        0
+      ],
+      "image": [
+        "8",
+        0
+      ]
+    }
+  },
+  "18": {
+    "class_type": "InvertMask",
+    "inputs": {
+      "mask": [
+        "16",
+        0
+      ]
+    }
+  },
+  "17": {
+    "class_type": "JoinImageWithAlpha",
+    "inputs": {
+      "image": [
+        "8",
+        0
+      ],
+      "alpha": [
+        "18",
+        0
+      ]
+    }
+  },
+  "9": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "filename_prefix": "chibitoy_final",
+      "images": [
+        "17",
+        0
+      ]
+    }
+  }
+}

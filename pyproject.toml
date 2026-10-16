@@ -1,0 +1,23 @@
+[project]
+name = "chibitoy"
+version = "0.1.0"
+description = "肖像潮玩 ChibiToy —— 真人照片转 Q 版潮玩手办的 ComfyUI 自动化系统"
+requires-python = ">=3.11"
+dependencies = [
+    "requests>=2.31",
+    "Pillow>=10.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/chibitoy"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "live: 需要正在运行的 ComfyUI 服务（默认执行，服务不可用则跳过）",
+    "slow: 需要加载大型本地权重（默认套件用 -m 'not live and not slow' 排除）",
+]

@@ -1,0 +1,36 @@
+{
+  "3": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "test.jpg"
+    },
+    "_meta": {
+      "title": "你的真人照片"
+    }
+  },
+  "4": {
+    "class_type": "ChibiToyApiGenerate",
+    "inputs": {
+      "image": [
+        "3",
+        0
+      ],
+      "appearance": "short black hair, dark brown jacket",
+      "prompt": "",
+      "size": 1088
+    },
+    "_meta": {
+      "title": "ChibiToy 云端 API 生图（不加载任何本地模型）"
+    }
+  },
+  "5": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "filename_prefix": "chibitoy_api",
+      "images": [
+        "4",
+        0
+      ]
+    }
+  }
+}
